@@ -1,0 +1,18 @@
+.clock {
+	font-family: arial;
+	font-weight: bold;
+	font-size:30px;
+	color: #000000;
+	border: 1px solid #000000;
+	margin-top: 20px;
+	margin-left: 30px;
+    height: 120px;
+    width: 500px;
+    padding-top: 0px;
+    padding-bottom: 200px;
+	text-align: center;
+	-webkit-border-radius: 10px;
+	-moz-border-radius: 10px;
+	bolder-radius: 10px;
+	
+}

@@ -1,0 +1,105 @@
+{% extends 'base.html' %}
+
+
+{% block title %}
+All Topics :
+{% endblock %}
+
+{% block stylesheet %}
+{% endblock %}
+
+{% block profile %}
+{% endblock %}
+
+{% block content %}
+
+
+ <div class="container-fluid">
+
+
+          {% if ok %}
+                <script language="javascript">
+
+						swal('OK!!','Your Category Have been Added Succesfully','success');
+
+						 setTimeout(function(){
+							window.location.href='/category'
+					 },3000);
+
+					</script>
+          {% endif %}
+
+           {% if ok2 %}
+                <script language="javascript">
+
+						swal('OK!!','Your Category Have been Updated  Succesfully','success');
+
+						 setTimeout(function(){
+							window.location.href='/category'
+					 },3000);
+
+					</script>
+           {% endif %}
+
+           {% if ok3 %}
+                <script language="javascript">
+
+						swal('OK!!','Your Category Have been Deleted Succesfully','success');
+
+						 setTimeout(function(){
+							window.location.href='/category'
+					 },3000);
+
+					</script>
+           {% endif %}
+
+
+          {% if request.user.is_authenticated %}
+                {% if request.user.is_staff or request.user.is_superuser %}
+                      <a href="{% url 'add_category' %}" class="btn btn-primary pull pull-right">Add new Category</a>
+                {% endif %}
+          {% endif %}
+
+          <table class="table table-striped">
+              <thead>
+                    <tr>
+                         <td>Title</td>
+                        {% if request.user.is_authenticated %}
+                             {% if request.user.is_staff or request.user.is_superuser %}
+                                      <td>Action</td>
+                              {% endif %}
+                        {% endif %}
+
+
+                    </tr>
+              </thead>
+
+              <tbody>
+
+                  {% for cat in cat %}
+                       <tr>
+                           <td><a href="{% url 'topic' name=cat.name %}">{{ cat.name }} </a> </td>
+
+                           {% if request.user.is_authenticated %}
+                               {% if request.user.is_staff or request.user.is_superuser %}
+                                     <td> <a href="{% url 'delete_category' name=cat.name %}">Delete </a> || <a href="{% url 'update_category' name=cat.name %}"> Edit </a>  </td>
+                                {% endif %}
+                           {% endif %}
+
+
+                       </tr>
+                  {% endfor %}
+
+
+              </tbody>
+          </table>
+      </div>
+
+
+
+
+
+{% endblock %}
+
+{% block script %}
+{% endblock %}
